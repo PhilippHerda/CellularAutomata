@@ -12,7 +12,7 @@ public class Game extends Canvas implements Runnable{
     @Serial
     private static final long serialVersionUID = 533351226053614578L;
 
-    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+    public static final int WIDTH = 1280, HEIGHT = WIDTH / 12 * 9;
 
     private Thread thread; //single threaded game not recommended!
     private boolean running = false;
@@ -25,10 +25,16 @@ public class Game extends Canvas implements Runnable{
 
         handler = new Handler();
         r = new Random();
-
+/*
         for(int i = 0; i<50; i++) {
             handler.addObject(new Player(r.nextInt(WIDTH),r.nextInt(HEIGHT), ID.PLAYER));
             //handler.addObject(new Player(0,0, ID.PLAYER));
+        }
+        */
+        for(int i = 1; i<11; i++) {
+            for(int j = 1; j<11; j++) {
+                handler.addObject(new Block(i*35,j*35, ID.BLOCK));
+            }
         }
 
 
