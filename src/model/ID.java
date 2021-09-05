@@ -1,5 +1,5 @@
 package model;
 
 public enum ID {
-    PLAYER(), ENEMY();
+    PLAYER(), ENEMY(), BLOCK();
 }
