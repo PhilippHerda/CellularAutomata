@@ -1,8 +1,6 @@
 package controller;
 
-import model.Game;
 import model.GameObject;
-
 import java.awt.*;
 import java.util.LinkedList;
 
