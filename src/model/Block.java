@@ -11,7 +11,7 @@ public class Block extends GameObject{
     private Random r;
 
     private Color defaultColor = Color.WHITE;
-    private Color activatedColor = Color.GREEN;
+    private Color activatedColor = Color.RED;
     private Color doubleActivated = Color.RED;
 
     public Block(int x, int y, ID id) {
@@ -25,12 +25,12 @@ public class Block extends GameObject{
 
     @Override
     public void tick() {
-        active = r.nextBoolean();
+        //active = r.nextBoolean();
     }
 
     @Override
     public void render(Graphics g) {
-
+        /*
         if(active && lastActive) {
             g.setColor(doubleActivated);
             lastActive = false;
@@ -41,6 +41,20 @@ public class Block extends GameObject{
             g.setColor(defaultColor);
             lastActive = active;
         }
-        g.fillRect(x, y, 32,32);
+        */
+        if(active) {
+            g.setColor(activatedColor);
+        } else {
+            g.setColor(defaultColor);
+        }
+
+        g.fillRect(x, y, 3,3);
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
