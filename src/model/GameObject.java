@@ -3,7 +3,6 @@ package model;
 import java.awt.*;
 
 public abstract class GameObject {
-
     protected int x, y;
     protected ID id;
     protected int velX, velY;
