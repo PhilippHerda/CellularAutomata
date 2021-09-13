@@ -22,9 +22,12 @@ public class Game extends Canvas implements Runnable{
     private Handler handler;
 
     public Game() {
-        handler = new Handler();
 
-        Window window = new view.Window(WIDTH, HEIGHT, "Let´s build a Game!", this);
+
+        handler = new Handler();
+        calculateRule30(WIDTH,HEIGHT);
+
+        Window window = new view.Window(WIDTH, HEIGHT, "Cellular Automata v. 0.1", this);
         window.getQuit().addActionListener(e -> {
             System.exit(0);
             stop();
@@ -45,8 +48,9 @@ public class Game extends Canvas implements Runnable{
             }
         }
         */
+
         //generateBlockMatrix(100,100);
-        calculateRule(100,100);
+
 
     }
 
@@ -54,7 +58,7 @@ public class Game extends Canvas implements Runnable{
         Block[][] gameMatrix = new Block[x][y];
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < y; j++) {
-                Block block = new Block(j+(9*i),i+(9*j), ID.BLOCK);
+                Block block = new Block(i,j, ID.BLOCK);
                 gameMatrix[i][j] = block;
                 handler.addObject(block);
             }
@@ -62,17 +66,17 @@ public class Game extends Canvas implements Runnable{
         return gameMatrix;
     }
 
-    private Block[][] calculateRule(int x, int y) {
+    private Block[][] calculateRule30(int x, int y) {
         Block[][] matrix = generateBlockMatrix(x,y);
         matrix[x/2][0].setActive(true);
         for(int i = 1; i<x-1; i++) {
             for(int j = 1; j<y-1; j++) {
-                if((matrix[i-1][j-1].isActive() && !matrix[i][j-1].isActive() && !matrix[i+1][j-1].isActive()) ||
-                        (!matrix[i-1][j-1].isActive() && matrix[i][j-1].isActive() && matrix[i+1][j-1].isActive()) ||
-                        (!matrix[i-1][j-1].isActive() && matrix[i][j-1].isActive() && !matrix[i+1][j-1].isActive()) ||
-                        (!matrix[i-1][j-1].isActive() && !matrix[i][j-1].isActive() && matrix[i+1][j-1].isActive())
+                if((matrix[j-1][i-1].isActive() && !matrix[j][i-1].isActive() && !matrix[j+1][i-1].isActive()) ||
+                        (!matrix[j-1][i-1].isActive() && matrix[j][i-1].isActive() && matrix[j+1][i-1].isActive()) ||
+                        (!matrix[j-1][i-1].isActive() && matrix[j][i-1].isActive() && !matrix[j+1][i-1].isActive()) ||
+                        (!matrix[j-1][i-1].isActive() && !matrix[j][i-1].isActive() && matrix[j+1][i-1].isActive())
                 ) {
-                    matrix[i][j].setActive(true);
+                    matrix[j][i].setActive(true);
                 }
             }
         }
@@ -134,7 +138,7 @@ public class Game extends Canvas implements Runnable{
 
     private void tick() throws InterruptedException {
         handler.tick();
-        Thread.sleep(50);
+        Thread.sleep(10);
     }
 
     private void render() {
