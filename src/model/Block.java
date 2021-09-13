@@ -48,7 +48,7 @@ public class Block extends GameObject{
             g.setColor(defaultColor);
         }
 
-        g.fillRect(x, y, 3,3);
+        g.fillRect(x, y, 1,1);
     }
 
     public boolean isActive() {
