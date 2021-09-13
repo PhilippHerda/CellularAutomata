@@ -111,7 +111,11 @@ public class Game extends Canvas implements Runnable{
             delta += (now-lastTime) / ns;
             lastTime = now;
             while(delta >= 1) {
-                tick();
+                try {
+                    tick();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 delta--;
             }
             if(running) {
@@ -128,8 +132,9 @@ public class Game extends Canvas implements Runnable{
         stop();
     }
 
-    private void tick() {
+    private void tick() throws InterruptedException {
         handler.tick();
+        Thread.sleep(50);
     }
 
     private void render() {
