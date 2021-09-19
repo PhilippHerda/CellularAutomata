@@ -11,7 +11,7 @@ public class Block extends GameObject{
     private Random r;
 
     private Color defaultColor = Color.WHITE;
-    private Color activatedColor = Color.RED;
+    private Color activatedColor = Color.BLACK;
     private Color doubleActivated = Color.RED;
 
     public Block(int x, int y, ID id) {
